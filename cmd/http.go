@@ -28,6 +28,7 @@ func ServeHTTP() {
 	bareMetal.Post("/", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.Create)
 	bareMetal.Put("/:id", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.Update)
 	bareMetal.Get("/", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.GetAll)
+	bareMetal.Get("/node", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.GetAllNodes)
 	bareMetal.Get("/:id", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.GetOne)
 	bareMetal.Get("/status-history/:node_id", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.GetNodeStatusHistory)
 	bareMetal.Delete("/:id", middleware.MiddlewareValidateAuth, dependencies.BareMetalController.Delete)

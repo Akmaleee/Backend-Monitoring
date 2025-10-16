@@ -86,6 +86,20 @@ type BareMetalNodeStatusHistoryResponse struct {
 	BareMetalNodeID uint64    `json:"bare_metal_node_id"`
 	Type            string    `json:"type"`
 	Status          string    `json:"status"`
-	CreatedAt       time.Time `json:"-"`
+	CreatedAt       time.Time `json:"created_at"`
 	UpdatedAt       time.Time `json:"-"`
+}
+
+type BareMetalNodeWithStatusResponse struct {
+	ID                  uint64    `json:"id"`
+	BareMetalID         uint64    `json:"bare_metal_id"`
+	Node                string    `json:"node"`
+	Cpu                 uint      `json:"cpu"`
+	Memory              uint64    `json:"memory"`
+	Disk                uint64    `json:"disk"`
+	Status              string    `json:"status"`
+	StatusType          string    `json:"status_type"`
+	StatusLastUpdatedAt time.Time `json:"status_last_updated_at"`
+	CreatedAt           time.Time `json:"created_at"`
+	UpdatedAt           time.Time `json:"updated_at"`
 }

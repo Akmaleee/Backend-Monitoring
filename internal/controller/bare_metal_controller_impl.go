@@ -148,3 +148,15 @@ func (c *BareMetalControllerImpl) Delete(ctx *fiber.Ctx) error {
 
 	return helper.SendResponse(ctx, http.StatusOK, true, "Delete Bare Metal", nil, nil)
 }
+
+func (c *BareMetalControllerImpl) GetAllNodes(ctx *fiber.Ctx) error {
+	log := helper.Logger
+
+	nodes, err := c.BareMetalService.GetAllNodes(ctx.Context())
+	if err != nil {
+		log.Error("Failed to get all bare metal nodes: ", err)
+		return helper.SendResponse(ctx, http.StatusInternalServerError, false, "Internal Server Error", nil, err.Error())
+	}
+
+	return helper.SendResponse(ctx, http.StatusOK, true, "Get All Bare Metal Nodes", nodes, nil)
+}

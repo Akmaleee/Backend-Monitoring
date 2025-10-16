@@ -115,3 +115,19 @@ func (r *BareMetalRepositoryImpl) Delete(ctx context.Context, id uint64) error {
 
 	return nil
 }
+
+func (r *BareMetalRepositoryImpl) GetAllNodes(ctx context.Context) ([]entity.BareMetalNode, error) {
+	var nodes []entity.BareMetalNode
+	err := r.DB.DBInfra.
+		Model(&entity.BareMetalNode{}).
+		Preload("BareMetalNodeStatus", func(db *gorm.DB) *gorm.DB {
+			return db.Order("bare_metal_node_status.created_at DESC")
+		}).
+		Order("created_at desc").
+		Find(&nodes).Error
+
+	if err != nil {
+		return nil, err
+	}
+	return nodes, nil
+}

@@ -76,7 +76,7 @@ type VirtualMachineStatusHistoryResponse struct {
 	VirtualMachineID uint64    `json:"virtual_machine_id"`
 	Type             string    `json:"type"`
 	Status           string    `json:"status"`
-	CreatedAt        time.Time `json:"-"`
+	CreatedAt        time.Time `json:"created_at"`
 	UpdatedAt        time.Time `json:"-"`
 }
 
